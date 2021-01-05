@@ -1,8 +1,8 @@
 ﻿import * as AWS from 'aws-sdk'
-//import * as AWSXRay from 'aws-xray-sdk'
+import * as AWSXRay from 'aws-xray-sdk'
 import { DocumentClient } from 'aws-sdk/clients/dynamodb'
 
-//const XAWS = AWSXRay.captureAWS(AWS)
+const XAWS = AWSXRay.captureAWS(AWS)
 
 import { TodoItem } from '../models/TodoItem'
 import {  TodoUpdate } from '../models/TodoUpdate'
@@ -15,7 +15,7 @@ export class TodoAccess {
             signatureVersion: 'v4' // Use Sigv4 algorithm
         }),
         private readonly expirationtime = parseInt(process.env.SIGNED_URL_EXPIRATION),
-        private readonly docClient: DocumentClient = new AWS.DynamoDB.DocumentClient(),
+        private readonly docClient: DocumentClient = new XAWS.DynamoDB.DocumentClient(),
         private readonly todoTable = process.env.TODO_TABLE) {
     }
 
