@@ -18,6 +18,10 @@ provider:
    IMAGES_S3_BUCKET: serverless-todo-project-images-caa-${self:provider.stage}
    SIGNED_URL_EXPIRATION: 300
    AUTH_0_JWKS_URL: https://dev-la879an3.eu.auth0.com/.well-known/jwks.json
+
+  tracing:
+   apiGateway: true
+   lambda: true    
   
   apiGateway:
    shouldStartNameWithService: true # Preparation for serverless framework v3.0.0
